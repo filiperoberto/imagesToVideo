@@ -1,6 +1,6 @@
 function Video() {
 	
-	var encoder = new Whammy.Video(15);
+	var encoder = new Whammy.Video();
 
 	this.compile = function(files,callback) {
 
@@ -9,26 +9,34 @@ function Video() {
 		for(var i=0;i<files.length;i++) {
 			
 			var image = new Image();
-			var url = (window.webkitURL || window.URL).createObjectURL(files[i]);
+			var url = URL.createObjectURL(files[i]);
+			var count = 0;
 
-			image.src = url;
 			image.onload = function () {
+
+				console.log('load image');
         
         		var canvas = document.createElement("canvas"),
           		canvasContext = canvas.getContext("2d");
-        		canvas.width = image.width;
-        		canvas.height = image.height;
+        		canvas.width = 400;
+        		canvas.height = 300;
         		canvasContext.drawImage(image, 0, 0, image.width, image.height);
-       			var dataURL = canvas.toDataURL('image/webp', 0);
+        		var dataURL = canvas.toDataURL('image/webp');
 
-       			encoder.add(dataURL);
+       			encoder.add(dataURL,1000);
+
+       			count++;
+
+       			if(count===files.length) {
+       				var blob = encoder.compile();
+
+       				var url = URL.createObjectURL(blob);
+					callback(url);
+       			}
      		 };
-		}
 
-		encoder.compile(function(output){
-			var url = (window.webkitURL || window.URL).createObjectURL(output);
-			callback(url);
-		})
+     		 image.src = url;
+		}
 	}
 
 }
