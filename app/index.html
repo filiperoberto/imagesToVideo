@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Images To Video</title>
+	<!--build:css css/styles.min.css-->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<!--endbuild-->
+	<!--build:js js/main.min.js -->
+	<script src="js/lib/whammy.min.js"></script>
+	<script src="js/lib/Video.js"></script>
+	<script src="js/main.js"></script>
+	<!-- endbuild -->
+</head>
+<body>
+	<header class="page-header">
+		<h1>Images to Video</h1>
+	</header>
+	<section class="container">
+		<div class="form-group">
+			<label for="inputFile">Imagens:</label>
+			<input type="file" id="inputFile" class="form-control" multiple accept="image/*">
+		</div>
+		<button id="button" class="btn btn-default">Criar Vídeo</button>
+		<video id='video' src=""></video>
+	</section>
+</body>
+</html>
