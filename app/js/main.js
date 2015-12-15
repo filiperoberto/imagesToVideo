@@ -8,12 +8,10 @@ window.onload = function(){
 
 	var files = [];
 
-	input.onchange = function(e){
-		files = e.target.files;
-	}
-
 	button.onclick = function(){
-		
+
+		var files = input.files;
+
 		encoder.compile(files,function(url){
 			video.src = url;
 		});

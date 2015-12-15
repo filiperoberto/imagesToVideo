@@ -13,30 +13,30 @@ function Video() {
 		for(var i=0;i<files.length;i++) {
 			
 			var img = new Image();
-			var url = URL.createObjectURL(files[i]);
+			var imageURL = URL.createObjectURL(files[i]);
 			var count = 0;
 
 			img.onload = function() {
 
                         //a custom fade in and out slideshow
                         context.globalAlpha = 0.2;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         video.add(context);
                         context.clearRect(0,0,context.canvas.width,context.canvas.height);
                         context.globalAlpha = 0.4;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         video.add(context);
                         context.clearRect(0,0,context.canvas.width,context.canvas.height);
                         context.globalAlpha = 0.6;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         video.add(context);
                         context.clearRect(0,0,context.canvas.width,context.canvas.height);
                         context.globalAlpha = 0.8;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         video.add(context);                       
                         context.clearRect(0,0,context.canvas.width,context.canvas.height);
                         context.globalAlpha = 1;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
 
                         video.add(context);
                         video.add(context);
@@ -48,15 +48,15 @@ function Video() {
 
                         context.clearRect(0,0,context.canvas.width,context.canvas.height);
                         context.globalAlpha = 0.8;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         video.add(context);
                         context.clearRect(0,0,context.canvas.width,context.canvas.height);
                         context.globalAlpha = 0.6;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         video.add(context);
                         context.clearRect(0,0,context.canvas.width,context.canvas.height);
                         context.globalAlpha = 0.4;
-                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        context.drawImage(this, 0, 0, canvas.width, canvas.height);
                         video.add(context);
 
                         count++;
@@ -68,7 +68,7 @@ function Video() {
                         }
                     };
 
-     		 img.src = url;
+     		 img.src = imageURL;
 		}
 	}
 
