@@ -1,6 +1,10 @@
 function Video() {
 	
-	var encoder = new Whammy.Video();
+	var video = new Whammy.Video(15);
+	var canvas = document.createElement("canvas");
+    var context = canvas.getContext("2d");
+    canvas.width = 400;
+    canvas.height = 300;
 
 	this.compile = function(files,callback) {
 
@@ -8,34 +12,63 @@ function Video() {
 
 		for(var i=0;i<files.length;i++) {
 			
-			var image = new Image();
+			var img = new Image();
 			var url = URL.createObjectURL(files[i]);
 			var count = 0;
 
-			image.onload = function () {
+			img.onload = function() {
 
-				console.log('load image');
-        
-        		var canvas = document.createElement("canvas"),
-          		canvasContext = canvas.getContext("2d");
-        		canvas.width = 400;
-        		canvas.height = 300;
-        		canvasContext.drawImage(image, 0, 0, image.width, image.height);
-        		var dataURL = canvas.toDataURL('image/webp');
+                        //a custom fade in and out slideshow
+                        context.globalAlpha = 0.2;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        video.add(context);
+                        context.clearRect(0,0,context.canvas.width,context.canvas.height);
+                        context.globalAlpha = 0.4;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        video.add(context);
+                        context.clearRect(0,0,context.canvas.width,context.canvas.height);
+                        context.globalAlpha = 0.6;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        video.add(context);
+                        context.clearRect(0,0,context.canvas.width,context.canvas.height);
+                        context.globalAlpha = 0.8;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        video.add(context);                       
+                        context.clearRect(0,0,context.canvas.width,context.canvas.height);
+                        context.globalAlpha = 1;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-       			encoder.add(dataURL,1000);
+                        video.add(context);
+                        video.add(context);
+                        video.add(context);
+                        video.add(context);
+                        video.add(context);
+                        video.add(context);
+                        video.add(context);
 
-       			count++;
+                        context.clearRect(0,0,context.canvas.width,context.canvas.height);
+                        context.globalAlpha = 0.8;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        video.add(context);
+                        context.clearRect(0,0,context.canvas.width,context.canvas.height);
+                        context.globalAlpha = 0.6;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        video.add(context);
+                        context.clearRect(0,0,context.canvas.width,context.canvas.height);
+                        context.globalAlpha = 0.4;
+                        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        video.add(context);
 
-       			if(count===files.length) {
-       				var blob = encoder.compile();
+                        count++;
+                              
+                        if(count === files.length) {
+                        	var blob = video.compile();
+                        	var url = URL.createObjectURL(blob);
+                        	callback(url);
+                        }
+                    };
 
-       				var url = URL.createObjectURL(blob);
-					callback(url);
-       			}
-     		 };
-
-     		 image.src = url;
+     		 img.src = url;
 		}
 	}
 

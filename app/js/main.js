@@ -6,10 +6,14 @@ window.onload = function(){
 	var video = document.getElementById('video');
 	var encoder = new Video();
 
+	var files = [];
+
+	input.onchange = function(e){
+		files = e.target.files;
+	}
+
 	button.onclick = function(){
-
-		var files = input.files;
-
+		
 		encoder.compile(files,function(url){
 			video.src = url;
 		});
