@@ -1,10 +1,10 @@
-function Video() {
+function Video(width,height,framerate) {
 	
-	var video = new Whammy.Video(15);
+	var video = new Whammy.Video(framerate);
 	var canvas = document.createElement("canvas");
     var context = canvas.getContext("2d");
-    canvas.width = 400;
-    canvas.height = 300;
+    canvas.width = width;
+    canvas.height = height;
 
 	this.compile = function(files,callback) {
 

@@ -1,8 +1,12 @@
 .page-header {
   text-align: center; }
 
-#button {
-  margin-top: 10px; }
+#download-buttons {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+#download-buttons a {
+  margin-right: 5px; }
 
 #video {
   margin: auto;

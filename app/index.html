@@ -16,13 +16,30 @@
 <body>
 	<header class="page-header">
 		<h1>Images to Video</h1>
+		<h4>Baseado em: <a href="http://techslides.com/demos/image-video/create.html">http://techslides.com/demos/image-video/create.html</a></h4>
 	</header>
 	<section class="container">
 		<div class="form-group">
 			<label for="inputFile">Imagens:</label>
 			<input type="file" id="inputFile" class="form-control" multiple accept="image/*">
 		</div>
-		<button id="button" class="btn btn-default">Criar Vídeo</button>
+		<div class="form-inline">
+			<div class="form-group">
+				<label for="">Width</label>
+				<input type="number" class='form-control' id='video-width' value='500'></input>
+			</div>
+			<div class="form-group">
+				<label for="">Height</label>
+				<input type="number"  class="form-control" id='video-height' value='300'></input>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="">Frame Rate</label>
+			<input type="number" class="form-control" value='15' id='video-framerate'></input>
+		</div>		
+		<div id="download-buttons">
+			<button id="button" class="btn btn-primary">Criar Vídeo</button>
+		</div>
 		<video id='video' src=""></video>
 	</section>
 </body>
